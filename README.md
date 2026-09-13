@@ -8,4 +8,5 @@ Use the candidate and district/ variable naming format in CAGE (https://datavers
 
 Do not git track large datasets. Only keep reproducible splits.
 
+Try to set up functions like a standard R package format (https://r-pkgs.org/) with roxygen
 
