@@ -1,0 +1,28 @@
+# Do not git-track large datasets — keep only reproducible splits / scripts.
+# Raw + intermediate election data
+data/
+data-raw/
+raw/
+cache/
+downloads/
+
+# Large columnar/tabular artifacts
+*.parquet
+*.feather
+*.arrow
+*.duckdb
+*.sqlite
+*.sqlite3
+*.csv.gz
+*.zip
+*.gz
+
+# R session / renv library artifacts
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+renv/library/
+renv/local/
+renv/cellar/
+renv/staging/
