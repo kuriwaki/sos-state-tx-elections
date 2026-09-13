@@ -1,6 +1,6 @@
 # sos-state-tx-elections
 
-Use Cursor Agents/Project to build a precinct-level database of Texas historical primary and general returns.  Think about it like a database: We want a precinct table, a candidate metadata table, a votes (at precinct level) table, etc. 
+Use Cursor Agents/Project to build a precinct-level database of Texas historical primary and general returns, likely from data stored via https://www.sos.state.tx.us/elections/index.shtml.  Think about it like a database: We want a precinct table, a candidate metadata table, a votes (at precinct level) table, etc. 
 
 Use R, tidyverse, parquet, where possible. 
 
