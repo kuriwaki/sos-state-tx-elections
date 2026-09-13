@@ -37,14 +37,25 @@ RUN gpg --homedir /tmp --no-default-keyring \
         > /etc/apt/preferences.d/99cranapt \
     && apt-get install -y --no-install-recommends python3-dbus python3-gi python3-apt \
     && Rscript -e 'install.packages("bspm")' \
-    && printf 'suppressMessages(bspm::enable())\noptions(bspm.version.check=FALSE)\n' >> /etc/R/Rprofile.site \
+    && printf 'suppressMessages(bspm::enable())\noptions(bspm.version.check=FALSE)\noptions(bspm.sudo=TRUE)\n' >> /etc/R/Rprofile.site \
     && rm -rf /var/lib/apt/lists/*
 
-# Curated base packages for tabular election-data analysis and reporting.
+# Curated base packages for the precinct-level Texas returns database:
+#  - tidyverse + data.table + janitor: ingest/clean SoS returns
+#  - arrow + duckdb + DBI: parquet storage and SQL-style "database" tables over parquet
+#  - dataverse: pull the CAGE reference dataset from Harvard Dataverse for name/format alignment + validation
+#  - httr2 + rvest: fetch/scrape returns from sos.state.tx.us
+#  - here/fs/glue/scales: project paths, file ops, formatting
+#  - knitr/rmarkdown: reproducible reports
+#  - devtools/roxygen2/usethis/testthat/pkgdown/covr: standard R package
+#    development workflow (https://r-pkgs.org/) with roxygen documentation
 # Installed as fast apt binaries through bspm; kept in the image so they live in the base snapshot.
 RUN Rscript -e 'install.packages(c( \
-        "tidyverse", "data.table", "janitor", "here", "arrow", \
-        "scales", "glue", "knitr", "rmarkdown", "renv", "remotes" \
+        "tidyverse", "data.table", "janitor", "here", "fs", \
+        "arrow", "duckdb", "DBI", "dataverse", \
+        "httr2", "rvest", "scales", "glue", \
+        "knitr", "rmarkdown", "renv", "remotes", \
+        "devtools", "roxygen2", "usethis", "testthat", "pkgdown", "covr" \
     ))' \
     && rm -rf /var/lib/apt/lists/*
 
@@ -52,6 +63,12 @@ RUN Rscript -e 'install.packages(c( \
 RUN if ! id ubuntu >/dev/null 2>&1; then useradd -m -s /bin/bash -u 1000 ubuntu; fi \
     && echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /etc/sudoers.d/ubuntu \
     && chmod 0440 /etc/sudoers.d/ubuntu
+
+# Let the (non-root) ubuntu user install project/source packages into the R
+# site-library without sudo. Combined with bspm.sudo above, `install.packages()`
+# and `remotes::install_local()` work in the install step, which runs as ubuntu.
+RUN mkdir -p /usr/local/lib/R/site-library \
+    && chown -R ubuntu:ubuntu /usr/local/lib/R/site-library
 
 USER ubuntu
 WORKDIR /home/ubuntu
