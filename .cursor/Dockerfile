@@ -42,7 +42,8 @@ RUN gpg --homedir /tmp --no-default-keyring \
 
 # Curated base packages for the precinct-level Texas returns database:
 #  - tidyverse + data.table + janitor: ingest/clean SoS returns
-#  - arrow + duckdb + DBI: parquet storage and SQL-style "database" tables over parquet
+#  - arrow: parquet storage and querying the "database" tables via the arrow
+#    dplyr backend (preferred over a SQL engine for this project)
 #  - dataverse: pull the CAGE reference dataset from Harvard Dataverse for name/format alignment + validation
 #  - httr2 + rvest: fetch/scrape returns from sos.state.tx.us
 #  - here/fs/glue/scales: project paths, file ops, formatting
@@ -52,7 +53,7 @@ RUN gpg --homedir /tmp --no-default-keyring \
 # Installed as fast apt binaries through bspm; kept in the image so they live in the base snapshot.
 RUN Rscript -e 'install.packages(c( \
         "tidyverse", "data.table", "janitor", "here", "fs", \
-        "arrow", "duckdb", "DBI", "dataverse", \
+        "arrow", "dataverse", \
         "httr2", "rvest", "scales", "glue", \
         "knitr", "rmarkdown", "renv", "remotes", \
         "devtools", "roxygen2", "usethis", "testthat", "pkgdown", "covr" \
