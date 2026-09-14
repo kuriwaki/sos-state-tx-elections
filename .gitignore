@@ -1,7 +1,9 @@
 # Do not git-track large datasets — keep only reproducible splits / scripts.
-# Raw + intermediate election data
+# Generated/large election data (the data-raw/ *scripts* are tracked; their
+# downloaded + built outputs are not).
 data/
-data-raw/
+data-raw/cache/
+data-raw/downloads/
 raw/
 cache/
 downloads/
