@@ -6,7 +6,7 @@
 \alias{txsos-package}
 \title{txsos: Texas Secretary of State Precinct-Level Election Returns}
 \description{
-Written entirely by Cursor with guidance from Shiro Kuriwaki. Builds a precinct-level (voting-district) database of Texas election returns from the Capitol Data Portal, the machine-readable source behind the Secretary of State returns. It targets statewide general and primary returns for the even-year cycles from 2012 to 2024 (each November general plus the Democratic and Republican primaries); the portal's wider catalogue of special and district elections reaches back to 2010. Returns are stored as Parquet and aligned to the CAGE candidate-naming format for validation.
+Written entirely by Cursor with guidance from Shiro Kuriwaki. Builds a precinct-level (voting-district) database of Texas primary and general election returns. Secretary of State historical returns reach back to 1992, but at the statewide and county-canvass level; the machine-readable precinct/VTD returns from the Capitol Data Portal that this package ingests currently cover the even-year general and primary cycles from 2012 to 2024, while earlier precinct-level records (1972-2004) survive only as Texas State Archives holdings. Returns are stored as Parquet and aligned to the CAGE candidate-naming format for validation.
 }
 \seealso{
 Useful links:
