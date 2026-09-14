@@ -1,0 +1,10 @@
+^\.cursor$
+^data-raw$
+^data$
+^\.github$
+^\.git$
+^LICENSE\.md$
+^README\.Rmd$
+^\.Rproj\.user$
+^.*\.Rproj$
+^\.gitignore$

@@ -1,0 +1,32 @@
+Package: txsos
+Title: Texas Secretary of State Precinct-Level Election Returns
+Version: 0.0.0.9000
+Authors@R:
+    person("Shiro", "Kuriwaki", , "shirokuriwaki@gmail.com", role = c("aut", "cre"))
+Description: Tools to build a precinct-level database of Texas historical
+    primary and general election returns. Fetches machine-readable returns
+    from the Texas Legislative Council / Capitol Data Portal (the source
+    behind the Secretary of State returns), reshapes them into a normalized
+    precinct / candidate / votes schema stored as Parquet, aligns candidate
+    and district identifiers with the CAGE ("Candidates in American General
+    Elections") naming format, and validates general-election totals.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+Depends:
+    R (>= 4.1)
+Imports:
+    arrow,
+    dplyr,
+    httr2,
+    readr,
+    rlang,
+    stringr,
+    tidyr
+Suggests:
+    testthat (>= 3.0.0),
+    tibble
+Config/testthat/edition: 3
+URL: https://github.com/kuriwaki/sos-state-tx-elections
+BugReports: https://github.com/kuriwaki/sos-state-tx-elections/issues
+Config/roxygen2/version: 8.1.0
