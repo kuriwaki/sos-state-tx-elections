@@ -6,7 +6,7 @@
 \alias{txsos-package}
 \title{txsos: Texas Secretary of State Precinct-Level Election Returns}
 \description{
-Written entirely by Cursor with guidance from Shiro Kuriwaki. Builds a precinct-level database of Texas election returns. Current functions cover: fetching precinct/VTD returns from the Capitol Data Portal ('fetch_ted_returns'); reshaping them to tidy long form ('tidy_ted_returns'); attaching CAGE candidate identifiers ('add_cage_keys'); building and storing a normalized precinct/candidate/votes schema as Parquet ('build_tables', 'write_returns_parquet', 'open_returns_parquet'); and summarizing and validating totals ('vote_share', 'candidate_totals', 'validate_totals').
+Written entirely by Cursor with guidance from Shiro Kuriwaki. Builds a precinct-level (voting-district) database of Texas election returns from the Capitol Data Portal, the machine-readable source behind the Secretary of State returns. It targets statewide general and primary returns for the even-year cycles from 2012 to 2024 (each November general plus the Democratic and Republican primaries); the portal's wider catalogue of special and district elections reaches back to 2010. Returns are stored as Parquet and aligned to the CAGE candidate-naming format for validation.
 }
 \seealso{
 Useful links:
